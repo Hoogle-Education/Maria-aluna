@@ -19,10 +19,19 @@ public class Match {
 	}
 	
 	private static void startRace() throws InterruptedException {
-		for(Racer r: players) 
+		for(Racer r: Match.players){
 			r.threadRacer.join();	
+
+			if( ! r.threadRacer.isAlive() )r.threadRacer.start();
+			else r.threadRacer.interrupt();
+			
+		} 
 	}
-	
+
+	private static void showRanking(){
+		ranking.forEach( System.out::println );
+	}
+
 	public static void main(String[] args) {
 		
 		int numberOfPlayers, numberOfMatchs;
@@ -36,21 +45,19 @@ public class Match {
 		System.out.print("Digite a quantidade partidas: ");
 		numberOfMatchs = input.nextInt();
 		
-		for(int i=0; i<numberOfMatchs; i++) {
+		for(int i=0; i<2; i++) {
 			
 			try {
 				Match.startRace(); // 
 			} catch(InterruptedException e) {
 				e.printStackTrace();
+				break;
+			}finally{
 			}
 			
-			for(Racer r : ranking) {
-				
-			}
-			
-			ranking.clear();
 		}
 		
+		Match.showRanking();
 		input.close();
 	}
 	

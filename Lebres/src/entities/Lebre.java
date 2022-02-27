@@ -8,14 +8,14 @@ public class Lebre implements Runnable {
 	private Random numero = new Random();
 	
 	static final List<String> ranking = new ArrayList<String>(); 
-	//Criação de um ArrayList para armazenar o ranking das lebres
+	//Criaï¿½ï¿½o de um ArrayList para armazenar o ranking das lebres
 	
 	static final List<Integer> qtdPulos = new ArrayList<Integer>(); 
 	//Lista que armazena a quantidade de pulos das lebres
 	
-	// Método Construtor
+	// Mï¿½todo Construtor
 	public Lebre(String nLebre) { 
-		//No construtor é imediatamente iniciada a Thread da lebre invocada
+		//No construtor ï¿½ imediatamente iniciada a Thread da lebre invocada
 		lebre = new Thread(this, nLebre);
 		lebre.start();
 	}
@@ -26,18 +26,18 @@ public class Lebre implements Runnable {
 		System.out.println(lebre.getName() + " instanciada");
 		
 		while (distancia <= 50) {
-			int distPulo = (numero.nextInt(3)) + 1; //Gera um número aleatório de 1 a 3
+			int distPulo = (numero.nextInt(3)) + 1; //Gera um nï¿½mero aleatï¿½rio de 1 a 3
 			
 			if ((distancia + distPulo) >= 50) {
-				//Controle da distância do pulo para verificação se a lebre finalizou a corrida
+				//Controle da distï¿½ncia do pulo para verificaï¿½ï¿½o se a lebre finalizou a corrida
 				distPulo = (50 - distancia); 
 				distancia = 50;
-				System.out.println(lebre.getName() + " Último pulo de " 
-				+ distPulo + " metro(s) de distância " 
+				System.out.println(lebre.getName() + " ï¿½ltimo pulo de " 
+				+ distPulo + " metro(s) de distï¿½ncia " 
 				+ "(percorrido " + distancia + " metro(s))");
 				break;				
 			} else { 
-				distancia += distPulo; //Acumulador da distância de pulos
+				distancia += distPulo; //Acumulador da distï¿½ncia de pulos
 				qtdPulos++;
 				try {
 					Thread.sleep(100); 
@@ -47,7 +47,7 @@ public class Lebre implements Runnable {
 				}
 				
 				System.out.println(lebre.getName() + " pulou " + distPulo + 
-						" metro(s) de distância " + "(percorrido "
+						" metro(s) de distï¿½ncia " + "(percorrido "
 						+ distancia + " metros)");
 			}			
 		}
@@ -58,8 +58,10 @@ public class Lebre implements Runnable {
 	}    
 	
 	public void pontuar(Thread l, int qPulos) {
-		System.out.println(lebre.getName() + " está no ambiente sincronizado!");
+		System.out.println(lebre.getName() + " estï¿½ no ambiente sincronizado!");
 		ranking.add(l.getName());
 		qtdPulos.add(qPulos);
 	}	
+
+	
 }

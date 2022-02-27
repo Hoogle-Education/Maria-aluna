@@ -7,9 +7,8 @@ import application.Match;
 public class Racer implements Runnable {
 
 	public Thread threadRacer;
-	private String racerName;
+	public String racerName;
 	private int score;
-	private Random random; 
 	
 	public Racer( String racerName ) {
 		this.racerName = racerName;
@@ -20,42 +19,54 @@ public class Racer implements Runnable {
 	public void run() {
 		
 		int position = 0;
-		double step = 100*random.nextDouble();
+		int step = (int) Math.floor( Math.random()*(100)) ;
 		
 		while ( position <= 2000 ) {
 			
-			if( position + step > 2000 ) {
-				// 
+			// System.out.println( racerName 
+			// 										+ " || step = " + step 
+			// 										+ " || position  = " + position);
+			
+			if( position + step > 1000 ) {
+				score += Match.players.size() - Match.ranking.size();
+				position = 0;
+				break;
 			} else {
-				
 				position += step;
+
 				try {
 					// allow other race to run
 					Thread.sleep(100);
 				} catch(InterruptedException e) {
 					e.printStackTrace();
 				}
+			
+				step = (int)Math.floor( Math.random()*(100)) ;
 			}
 			
 		}
 		
 		synchronized ( threadRacer ) {
-			calculateScore(threadRacer );
+			try {
+				constructRank(threadRacer );
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 		
 	}
 	
-	public void calculateScore( Thread threadRacer ) {
+	public void constructRank( Thread thread ) throws InterruptedException {
 		Match.ranking.add( this );
-		// calcular score das posições corretamente
+		System.out.println(thread.getName() + " is going to sleep" );
+		System.out.println(thread.isAlive());
+		threadRacer.wait();
 	}
 
 
 	@Override
 	public String toString() {
-		return racerName 
-				+ "score=" 
-				+ score ;
+		return racerName + " -> score=" + score + " points";
 	}
 	
 	

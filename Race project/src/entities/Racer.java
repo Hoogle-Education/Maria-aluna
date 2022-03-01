@@ -35,7 +35,6 @@ public class Racer implements Runnable, Comparable<Racer> {
 			if( position + step > 1000 ) {
 				score += maxPoints;
 				maxPoints--;
-				System.out.println(this.getThread() + " : " + score + " || maxpoints = " + maxPoints);
 				count++;
 				if(count == Match.ranking.size()){
 					count = 0;
@@ -79,7 +78,7 @@ public class Racer implements Runnable, Comparable<Racer> {
 
 	@Override
 	public int compareTo(Racer other) {
-		return this.getScore() - other.getScore() ;
+		return -1*(this.getScore() - other.getScore()) ;
 	}
 	
 }

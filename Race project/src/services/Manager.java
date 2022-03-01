@@ -21,27 +21,15 @@ public class Manager {
 	}
 	
 	public static void updateRanking( int n , List<Racer> players) {
-		System.out.println("size of ranking: " + Match.ranking.size());
 		if( !(Match.ranking.size() == n) ){
 			for(int i=1; i<=n; i++) {
 				String aux = "Racer #" + i;
 				Match.ranking.add( new Racer(aux) );
 			}
-			System.out.println("size of ranking: " + Match.ranking.size() + " now ranking is filled");
 		}else{
 			for(int i=0; i<n; i++){
-				
 				String racerId = players.get(i).getRacerName();
 				int newScore = Match.ranking.get(i).getScore() + players.get(i).getScore();
-				
-				System.out.println(racerId 
-													+ ": ActualScore = " 
-													+  Match.ranking.get(i).getScore() 
-													+ " || Score to add = " 
-													+ players.get(i).getScore() 
-													+ " || new Score = " 
-													+ newScore);
-
 				Match.ranking.set(i, new Racer( racerId, newScore) );
 			}
 		}
@@ -66,14 +54,6 @@ public class Manager {
 
 	}
 
-	public static void printThreadState(String local, Racer r) {
-		System.out.println("[ " 
-											+ local 
-											+ " ] -> "
-											+ r
-											+ " : "
-											+ r.thread.getState() );
-	}
 
 	public static void showRanking( List <Racer> ranking ){
 		Collections.sort(ranking);

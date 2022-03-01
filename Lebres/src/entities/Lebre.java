@@ -40,7 +40,7 @@ public class Lebre implements Runnable {
 				distancia += distPulo; //Acumulador da dist�ncia de pulos
 				qtdPulos++;
 				try {
-					Thread.sleep(100); 
+					Thread.sleep(1000); 
 					//Faz a lebre aguardar 10 milissegundos o que permite outra lebre tomar conta da CPU
 				} catch (InterruptedException e) {					
 					e.printStackTrace();

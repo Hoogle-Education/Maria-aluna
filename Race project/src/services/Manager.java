@@ -1,5 +1,7 @@
 package services;
 
+import java.util.List;
+
 import application.Match;
 import entities.Racer;
 
@@ -13,20 +15,25 @@ public class Manager{
 	}
 	
 	public static void startRace() throws InterruptedException {
+
 		for(Racer r: Match.players){
 			printRacerState(r);
-			r.threadRacer.join();			
+			r.threadRacer.join();
 		} 
+
 	}
 
 	public static void remakeRace() {
-		Match.players.clear();
-		Match.addPlayers( Match.ranking.size() , );
-		Match.ranking.size();
+		List <Racer> copy = Match.players;
+		Match.ranking.clear();
+		for(Racer copiedRacer : copy ){
+			Match.players.add( copiedRacer );
+		}
 	}
 
 	
 	public static void showResult(){
+		System.out.println(" ============ RESULT ============");
 		Match.ranking.forEach( System.out::println );
 	}
 

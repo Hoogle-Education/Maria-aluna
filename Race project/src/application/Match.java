@@ -20,7 +20,6 @@ public class Match {
 		System.out.print("Digite a quantidade corredores: ");
 		numberOfPlayers = input.nextInt();
 		
-		Manager.addPlayers(numberOfPlayers);
 		
 		System.out.print("Digite a quantidade partidas: ");
 		numberOfMatchs = input.nextInt();
@@ -28,14 +27,11 @@ public class Match {
 		for(int i=1; i<=numberOfMatchs; i++) {
 			
 			try {
+				
+				Manager.addPlayers(numberOfPlayers);
 				System.out.println("run #" + i);
-				Manager.startRace(); // 
-				
-				if( i == numberOfMatchs ){
-					System.out.println("### there is the result ###");
-					Manager.showResult();
-				} else Manager.remakeRace();
-				
+				Manager.startRace();
+								
 			} catch(InterruptedException e) {
 				System.err.println("Error " + i);
 				e.printStackTrace();
@@ -43,6 +39,8 @@ public class Match {
 			}
 			
 		}
+
+		Manager.showResult();
 		
 		input.close();
 	}

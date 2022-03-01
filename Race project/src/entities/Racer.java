@@ -29,10 +29,6 @@ public class Racer implements Runnable {
 		
 		while ( position <= 2000 ) {
 			
-			// System.out.println( racerName 
-			// 										+ " || step = " + step 
-			// 										+ " || position  = " + position);
-			
 			if( position + step > 1000 ) {
 				score += Match.players.size() - Match.ranking.size();
 				position = 0;
@@ -64,17 +60,8 @@ public class Racer implements Runnable {
 	
 	public void constructRank( Thread thread ) throws InterruptedException {
 		System.out.println("Adding " + this);
-		int find = Match.ranking.indexOf( this );
-		
-		if( find != -1 ){
-			System.out.println("Player " + this.racerName + " Already in list!");
-		}else{
+		Match.ranking.add(this);
 
-		}
-
-		// if(Match.ranking.size() == Match.players.size()){
-		// // 	Match.ranking.forEach( System.out::println );
-		// }
 	}
 
 
